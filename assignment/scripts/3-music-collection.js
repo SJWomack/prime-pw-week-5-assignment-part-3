@@ -25,18 +25,18 @@ console.log(addToCollection('cheshire cat', 'blink 182', 2007, [{ trackName: 'ca
 
 function showCollection(array) {
     console.log(`${array.length} records in the collection`);
-    
- // let songs = []
- //       for (let i = 0; i < array.tracks.length; i++) {
- //           
-  //        songs.push(`${i+1}. ${array.tracks}`)
 
- //       }    length is undefined??? can't figure it out
-    
     for (let albums of array) {
-        console.log(`${albums.title} by ${albums.artist} published in ${albums.yearPublished}:}`);
+        console.log(`${albums.title} by ${albums.artist} published in ${albums.yearPublished}: `);
+        let atLast = albums.tracks;
+        atLast.forEach(function (element, index, array) {
+            console.log(`${index + 1} ${atLast[index].trackName}: ${atLast[index].duration}`);
+        });
+
     }
 }
+
+
 
 showCollection(collection); //checking function
 
@@ -59,14 +59,27 @@ function search(artist, yearPublished, trackName) {
         return collection;
     }
     for (let record of collection) {
-        if (record.artist === artist && record.yearPublished === yearPublished) {
+       /* function getSong(song) {
+            let atLast = record.tracks;
+
+            atLast.forEach(function (element, index, array) {
+                let song = []
+                if (atLast[index].trackName === trackName); {
+                    song.push(atLast[index].trackName)
+                }
+            });
+        }*/
+        if (record.artist === artist && record.yearPublished === yearPublished /* && getSong(trackName) === trackName*/) {
             searchResults.push(record);
+
+
+
         }
 
     }
     return searchResults;
 }
 
-console.log(search('blink 182', 2007)); //expect 2 results
+console.log(search('blink 182', 2007));
 console.log(search('blink 182', 2010));  //expect empty array
 console.log(search());                   //expect collection array
